@@ -63,8 +63,6 @@ class _MyHomePageState extends State<MyHomePage> {
        _service = .15;
      }
 
-     _tipInput = double.parse(tipTextField.text);
-     _tipOutput = _tipInput * _service;
    }
 
   @override
@@ -117,22 +115,41 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Switch(
               value: isSwitched,
-              onChanged: (value) {
+              onChanged:
+                  (value) {
               setState(() {
               isSwitched = value;
-                });
+              if (isSwitched = true) {
+                _service = .2;
+              }
+
+              else {
+                _service = .15;
+              }
+
+              });
                 },
                 activeTrackColor: Colors.yellow,
                 activeColor: Colors.orangeAccent,
 
               ),
             ElevatedButton(
-                onPressed: convertTip,
                 child: const Text('Calculate tip'),
+                onPressed: () {
+                  setState(() {
+
+                    _tipInput = double.parse(tipTextField.text);
+                    _tipOutput = _tipInput * _service;
+                  });
+                }
+
             ),
-            Text(
+
+              Text(
                 'Total Tip: ' + _tipOutput.toString(),
-            ),
+              ),
+
+
           ],
         ),
       ),
